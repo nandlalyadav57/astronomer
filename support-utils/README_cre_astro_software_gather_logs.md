@@ -1,33 +1,69 @@
 
+```
 ****cre_astro_gather_logs Script****
 ====================================
 
-This script will export pod logs, events, helm values, node status, secrets, rs, Ingres, jobs, etc. which are required chiefly for troubleshooting purposes.
+## Download and Run the Script
 
-Also, it will describe the output of all the nodes & the status of pods in a bad state.
+You can download and run the script using either `curl` or `wget`:
 
-We have to make sure to add the below parameters in the script. The script is interactive and would ask the same
+### Using `curl`:
 
-1.) Astronomer namespace (Astronomer Namespace to collect logs)
+```bash
+curl -fsSL -o cre_astro_software_gather_logs.sh https://raw.githubusercontent.com/nandlalyadav57/astro/main/scripts/Gather%20logs/cre_astro_software_gather_logs.sh
+```
 
-2.) DIR (local directory to export the logs)
+### Using `wget`:
 
-3.) BASEDOMAIN (I had a test cluster with the URL https://app.nandlal51.astro-cre.comthen my base domain isnandlal51.astro-cre.com
+```bash
+wget https://raw.githubusercontent.com/nandlalyadav57/astro/main/scripts/Gather%20logs/cre_astro_software_gather_logs.sh
+```
 
-~~~
+After downloading the script, make it executable:
+
+```bash
+chmod +x cre_astro_software_gather_logs.sh
+```
+
+Then, you can run the script using either:
+
+```bash
+sh cre_astro_software_gather_logs.sh
+```
+
+or
+
+```bash
+./cre_astro_software_gather_logs.sh
+```
+
+Ensure you provide the following parameters when running the script, as it is interactive and will prompt you for these details:
+
+1. **Astronomer namespace**: For example, "astronomer," which is the namespace where all Astronomer system pods run.
+2. **DIR (local directory)**: For instance, "/tmp," which is the local directory where the script will export logs. Attach the resulting zip file from this location to your support ticket.
+3. **BASEDOMAIN**: For example, "nandlal51.astro-cre.com," derived from the test cluster's URL, such as "https://app.nandlal51.astro-cre.com."
+
+The script will export various data, including pod logs, events, helm values, node status, replica sets, Ingress configurations, jobs, etc. If the file exceeds 50 MB, upload it to cloud storage and share the link in your support request. It will also describe the output of all the nodes and the status of pods in a bad state.
+
+**Configuration Parameters**
+
+Ensure you add the following parameters in the script. The script is interactive and will prompt you for these values:
+
+```bash
 export ASTRONOMER_NAMESPACE=
 export DIR=
 export BASEDOMAIN=
-~~~
+```
 
-Usage: Just run the shell script as below and you will get the required log files.
+**Usage**: Just run the shell script as shown above to get the required log files.
 
-Kindly make sure your script is in Unix format and executable:
+**Additional Notes**: Make sure your script is in Unix format and executable:
 
-~~~
+```bash
 dos2unix *.sh 
 chmod 755 *.sh
-~~~
+```
+
 
 Expected output:
 
